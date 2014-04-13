@@ -8,4 +8,11 @@ describe User do
 	it "should be searchable by username" do
 		User.find('test_user').should be_eql(@user)
 	end
+	it "should encrypt password" do
+		@user.password_digest.should_not be_eql('password')
+	end
+	it "should authenticate  password" do
+		@user.authenticate('password').should be_true		
+		@user.authenticate('wrong').should be_false
+	end
 end

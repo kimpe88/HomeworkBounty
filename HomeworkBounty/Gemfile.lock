@@ -38,6 +38,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.0)
+    bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -175,6 +176,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.5)
   better_errors (~> 1.1.0)
   binding_of_caller (~> 0.7.2)
   bootstrap-sass (~> 3.1.1.0)
