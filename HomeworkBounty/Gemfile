@@ -32,6 +32,8 @@ gem 'bcrypt', '~> 3.1.5'
 
 group :development, :test do
 	gem 'rspec-rails', '~> 2.14.2'
+	gem 'ZenTest', '~> 4.9.5'
+	gem 'autotest-rails', '~> 4.2.1'
  end
 
 group :test do
