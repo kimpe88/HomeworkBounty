@@ -34,6 +34,8 @@ group :development, :test do
 	gem 'rspec-rails', '~> 2.14.2'
 	gem 'ZenTest', '~> 4.9.5'
 	gem 'autotest-rails', '~> 4.2.1'
+	gem 'tzinfo', '~> 1.1.0'
+	gem 'tzinfo-data', '~> 1.2014.2'
  end
 
 group :test do
