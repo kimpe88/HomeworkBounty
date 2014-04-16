@@ -15,4 +15,10 @@ describe User do
 		@user.authenticate('password').should be_true		
 		@user.authenticate('wrong').should be_false
 	end
+	it "should have a school" do
+		pending
+		# Adding school to user does not work
+		#@user.school.create!(School.new({:name => 'KTH', :website => 'kth.se', :email_domain => '@kth.se'}))
+		#puts User.find('test_user').school.name
+	end
 end

@@ -9,5 +9,5 @@ class User
   # http://apidock.com/rails/ActiveModel/SecurePassword/ClassMethods/has_secure_password
   field :password_digest, type: String
   has_secure_password
-
+  belongs_to :school, :class_name => 'School'
 end
