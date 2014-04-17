@@ -8,7 +8,8 @@ describe School do
 		School.find(@school.name).should_not be_blank
 	end
 	it "it should have a student" do
-		pending
+		@school.students.create!({:username => 'test_user', :email =>'test_user@kth.se', :password => 'hejsan'})
+		School.find(@school.name).students[0].username.should be_eql('test_user')
 	end
 
 end

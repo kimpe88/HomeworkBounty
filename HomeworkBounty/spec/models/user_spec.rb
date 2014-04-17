@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe User do
 	before :each do
-		@user = User.new({:username => 'test_user', :email => 'test@kth.se', :password => 'password'})
-		@user.save
+		@school = School.create!({:name => 'KTH', :website => 'kth.se', :email_domain => '@kth.se'})
+		@school.students.create!({:username => 'test_user', :email => 'test@kth.se', :password => 'password'})
+		@user = @school.students[0]
 	end
 	it "should be searchable by username" do
 		User.find('test_user').should be_eql(@user)
@@ -16,9 +17,6 @@ describe User do
 		@user.authenticate('wrong').should be_false
 	end
 	it "should have a school" do
-		pending
-		# Adding school to user does not work
-		#@user.school.create!(School.new({:name => 'KTH', :website => 'kth.se', :email_domain => '@kth.se'}))
-		#puts User.find('test_user').school.name
+		User.find('test_user').school.name.should be_eql('KTH')
 	end
 end
