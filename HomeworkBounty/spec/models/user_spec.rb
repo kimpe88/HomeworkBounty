@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe User do
 	before :each do
-		@school = School.create!({:name => 'KTH', :website => 'kth.se', :email_domain => '@kth.se'})
-		@school.students.create!({:username => 'test_user', :email => 'test@kth.se', :password => 'password'})
+		@school_args = {:name => 'kth', :website => 'kth.se', :email_domain => '@kth.se'}
+		@school = School.create!(@school_args)
+		@user_args = {:username => 'test_user', :email => 'test@kth.se', :password => 'password'}
+		@school.students.create!(@user_args)
 		@user = @school.students[0]
 	end
 	it "should be searchable by username" do
@@ -17,6 +19,12 @@ describe User do
 		@user.authenticate('wrong').should be_false
 	end
 	it "should have a school" do
-		User.find('test_user').school.name.should be_eql('KTH')
+		User.find('test_user').school.name.should be_eql(@school_args[:name])
+	end
+	it "should not approve non school email" do
+		expect { @school.students.create!({:username => 'test_user2', :email => 'test@gmail.se', :password => 'password'}) }.to raise_error
+	end
+	it "should not allow too short passwords" do
+		pending 'password validation test needs to be implemented'	
 	end
 end
