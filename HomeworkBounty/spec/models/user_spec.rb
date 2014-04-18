@@ -25,6 +25,7 @@ describe User do
 		expect { @school.students.create!({:username => 'test_user2', :email => 'test@gmail.se', :password => 'password'}) }.to raise_error
 	end
 	it "should not allow too short passwords" do
-		pending 'password validation test needs to be implemented'	
+		expect {  @school.students.create!({:username => 'test_user2', :email => 'test@kth.se', :password => ''}) }.to raise_error
+		expect {  @school.students.create!({:username => 'test_user2', :email => 'test@kth.se', :password => 'pass'}) }.to raise_error
 	end
 end

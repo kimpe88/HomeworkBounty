@@ -9,7 +9,9 @@ class User
   # Uses secure password from active model
   # http://apidock.com/rails/ActiveModel/SecurePassword/ClassMethods/has_secure_password
   field :password_digest, type: String
-	validate presence: true, allow_blank: false, length: {:minimum => 6}
+	validates :password, :presence => true,
+											 :allow_blank => false,
+											 :length => {:minimum => 6}
   has_secure_password
   belongs_to :school, :class_name => 'School'
 

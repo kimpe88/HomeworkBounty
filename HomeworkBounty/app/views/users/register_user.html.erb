@@ -1,0 +1,14 @@
+<h1>Register</h1>
+<% schools = [['kth','KTH']] %>
+<%= form_for(@user) do |f| %>
+	<%= f.label :username %>
+	<%= f.text_field :username %>
+	<%= f.select :school, @schools %> 
+
+	<%= f.label :email %>
+	<%= f.text_field :email %>
+
+	<%= f.label :password %>
+	<%= f.password_field :password %>
+	<%= f.submit "Create my account" %>
+<% end %>
