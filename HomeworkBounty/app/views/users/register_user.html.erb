@@ -1,6 +1,14 @@
 <h1>Register</h1>
-<% schools = [['kth','KTH']] %>
 <%= form_for(@user) do |f| %>
+	<% if @user.errors.any? %>
+		<div class="error_message">
+		<ul class="error_list">
+			<% @user.errors.full_messages.each do |message| %>
+				<li> <%= message %></li>
+			<% end %>
+		</ul>
+		</div>
+	<% end %>
 	<%= f.label :username %>
 	<%= f.text_field :username %>
 	<%= f.select :school, @schools %> 
