@@ -15,9 +15,10 @@ class User
 
   def student_email
 		if not self.email =~ /#{school.email_domain}$/i
-  		errors[:Email] << "does not match school email domain"
-  	end
+			errors[:email] << "does not match school email domain"
+		end
 	end
+
 
 	def to_s
 		"Username #{username}, email #{email}, password #{password}"
