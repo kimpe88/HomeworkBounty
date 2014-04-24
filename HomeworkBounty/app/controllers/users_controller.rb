@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 	def create_instance_var
+		@countries =  []
+		Country.all.each do |country|
+			@countries << country.name
+		end
 		@schools = [] 
 		School.all.each do |school| 	
 			@schools << school.name
@@ -12,22 +16,18 @@ class UsersController < ApplicationController
 	end
 	def create
 		self.create_instance_var
-		user_params = params[:user].permit( :username, :password, :school, :email )
-		school = School.find(user_params[:school])
-		error = false
+		user_params = params[:user].permit( :username, :password, :password_confirmation, :school, :email )
 		begin
+			school = School.find(user_params[:school])
 			@user = school.students.create(user_params)
 			if @user.persisted?
 				render 'verify_email'
 			else
 				render 'register_user'
 			end
-		rescue Moped::Errors::OperationFailure => e
-			if [11000, 11001].include?(e.details['code'])
-				# Duplicate key error show user that they need to choose another username
-				@user.errors[:username] << " is not unique"
-				render 'register_user'
-			end
+		rescue Mongoid::Errors::DocumentNotFound => e
+			@user.errors[:school] << " is invalid"
+			render 'register_user'
 		end
 	end
 end

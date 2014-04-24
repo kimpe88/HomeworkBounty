@@ -6,6 +6,7 @@ class User
   field :username, type: String
   field :email, type: String
   validate :student_email
+	validates_uniqueness_of :email, :username
   # Uses secure password from active model
   # http://apidock.com/rails/ActiveModel/SecurePassword/ClassMethods/has_secure_password
   field :password_digest, type: String

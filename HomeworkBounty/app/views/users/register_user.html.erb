@@ -11,12 +11,15 @@
 	<% end %>
 	<%= f.label :username %>
 	<%= f.text_field :username %>
+	<%= label_tag(:country) %>
+	<%= select_tag(:country, options_for_select(@countries)) %>
+	<%= f.label :school %>
 	<%= f.select :school, @schools %> 
-
 	<%= f.label :email %>
 	<%= f.text_field :email %>
-
 	<%= f.label :password %>
 	<%= f.password_field :password %>
+	<%= f.label :password_confirmation %>
+	<%= f.password_field :password_confirmation %>
 	<%= f.submit "Create my account" %>
 <% end %>
