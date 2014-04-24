@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe User do
 	before :each do
-		@school_args = {:name => 'kth', :website => 'kth.se', :email_domain => '@kth.se'}
+		@country = Country.create!({:name => 'sweden'})
+		@school_args = {:name => 'kth', :website => 'kth.se', :email_domain => '@kth.se', :country_of_origin => 'sweden'}
 		@school = School.create!(@school_args)
 		@user_args = {:username => 'test_user', :email => 'test@kth.se', :password => 'password'}
 		@school.students.create!(@user_args)

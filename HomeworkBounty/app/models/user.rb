@@ -12,7 +12,7 @@ class User
 	validates :password, :length => {:minimum => 6, :message => " minmum length is 6 characters"}
   has_secure_password
   belongs_to :school, :class_name => 'School'
-
+ 
   def student_email
 		if not self.email =~ /#{school.email_domain}$/i
 			errors[:email] << "does not match school email domain"
