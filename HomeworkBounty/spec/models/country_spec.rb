@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Country do
   before :each do
-		@country = Country.create!({:name => 'sweden'})
+		@country = Country.create!({:name => 'Sweden'})
 	end
 	it "should be searchable by name" do
 		Country.find(@country.name).should_not be_blank

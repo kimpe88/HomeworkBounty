@@ -5,7 +5,7 @@ class Country
   field :name, type: String
 	validates :name, :presence => true,
 										:allow_blank =>false
-	has_many :school, :class_name => 'School'
+	has_many :schools, :class_name => 'School'
 	
 	
 end

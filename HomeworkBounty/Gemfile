@@ -32,6 +32,7 @@ gem 'bcrypt', '~> 3.1.5'
 
 group :development, :test do
 	gem 'rspec-rails', '~> 2.14.2'
+	gem 'capybara', '~> 2.2.1'
 	gem 'ZenTest', '~> 4.9.5'
 	gem 'autotest-rails', '~> 4.2.1'
 	gem 'tzinfo', '~> 1.1.0'
@@ -39,7 +40,6 @@ group :development, :test do
  end
 
 group :test do
-	gem 'capybara', '~> 2.2.1'
 	gem 'selenium-webdriver', '~> 2.41.0'
 	gem 'database_cleaner', '~> 1.2.0'
 end

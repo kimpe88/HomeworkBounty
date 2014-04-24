@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 		begin
 			@user = school.students.create(user_params)
 			if @user.persisted?
-				render :json => @user
+				render 'verify_email'
 			else
 				render 'register_user'
 			end
