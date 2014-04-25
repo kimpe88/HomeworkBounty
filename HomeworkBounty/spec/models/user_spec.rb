@@ -13,11 +13,7 @@ describe User do
 		User.find('test_user').should be_eql(@user)
 	end
 	it "should encrypt password" do
-		@user.password_digest.should_not be_eql('password')
-	end
-	it "should authenticate  password" do
-		@user.authenticate('password').should be_true		
-		@user.authenticate('wrong').should be_false
+		@user.encrypted_password.should_not be_eql('password')
 	end
 	it "should have a school" do
 		User.find('test_user').school.name.should be_eql(@school_args[:name])

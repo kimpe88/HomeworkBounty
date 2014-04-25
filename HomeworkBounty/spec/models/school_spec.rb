@@ -9,7 +9,7 @@ describe School do
 		School.find(@school.name).should_not be_blank
 	end
 	it "it should have a student" do
-		@school.students.create!({:username => 'test_user', :email =>'test_user@kth.se', :password => 'hejsan'})
+		@school.students.create!({:username => 'test_user', :email =>'test_user@kth.se', :password => 'passsword'})
 		School.find(@school.name).students[0].username.should be_eql('test_user')
 	end
 	it "should not allow empty fields" do

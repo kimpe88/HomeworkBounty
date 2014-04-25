@@ -6,11 +6,11 @@ describe "register/register_user.html.erb" do
 		@school_args = {:name => 'KTH', :website => 'kth.se', :email_domain => 'kth.se'}
 		@school = @country.schools.create!(@school_args)
 		@user ={:username => 'testuser', :password => 'password123',:password_confirmation => 'password123',  :email => 'testing@kth.se'} 
-		visit '/register'
+		visit '/users/sign_up'
 	end
 
 	it "should find register page at correct url" do
-		page.should have_content('Register')
+		current_path.should == '/users/sign_up'
 	end
 
 	it "should register a user successfully" do
@@ -18,8 +18,8 @@ describe "register/register_user.html.erb" do
 		fill_in('Password', :with => @user[:password])
 		fill_in('Password confirmation', :with => @user[:password])
 		fill_in('Email', :with => @user[:email])
-		click_button('Create my account')
-		page.should have_content('verify email')
+		click_button('Sign up')
+		page.should have_content('message with a confirmation link')
 	end
 
 	it "it should fail to register with wrong email" do
@@ -27,7 +27,7 @@ describe "register/register_user.html.erb" do
 		fill_in('Password', :with => @user[:password])
 		fill_in('Password confirmation', :with => @user[:password])
 		fill_in('Email', :with => 'wrong@example.com')
-		click_button('Create my account')
+		click_button('Sign up')
 		page.should have_content('Email does not match')
 	end
 
@@ -37,7 +37,7 @@ describe "register/register_user.html.erb" do
 		fill_in('Password', :with => @user[:password])
 		fill_in('Password confirmation', :with => @user[:password])
 		fill_in('Email', :with => @user[:email])
-		click_button('Create my account')
+		click_button('Sign up')
 		page.should have_content('Email is already taken')
 	end
 
@@ -47,7 +47,7 @@ describe "register/register_user.html.erb" do
 		fill_in('Password', :with => @user[:password])
 		fill_in('Password confirmation', :with => @user[:password])
 		fill_in('Email', :with => 'unique@kth.se')
-		click_button('Create my account')
+		click_button('Sign up')
 		page.should have_content('Username is already taken')
 	end
 
@@ -56,7 +56,7 @@ describe "register/register_user.html.erb" do
 		fill_in('Password', :with => @user[:password])
 		fill_in('Password confirmation', :with => 'wrongpassword')
 		fill_in('Email', :with => @user[:email])
-		click_button('Create my account')
+		click_button('Sign up')
 		page.should have_content("Password confirmation doesn't match Password")
 	end
 end
