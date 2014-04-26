@@ -13,7 +13,7 @@ class Question
 	validates :url, :presence => false,
 										:allow_blank =>true
 										
-	validate:create_url
+	before_validation :create_url
 	
 	#Automake the title into a nice looking url
 	def create_url
