@@ -4,15 +4,10 @@ class Question
   include Mongoid::Document
 	include Mongoid::Timestamps
   field :title, type: String
-	validates :title, :presence => true,
+	field :body, type: String
+	field :url, type: String
+	validates :title, :body, :url, :presence => true,
 										:allow_blank =>false
-  field :body, type: String
-	validates :body, :presence => true,
-										:allow_blank =>false
-  field :url, type: String
-	validates :url, :presence => false,
-										:allow_blank =>true
-										
 	before_validation :create_url
 	
 	#Automake the title into a nice looking url
@@ -22,6 +17,6 @@ class Question
 	
 	#Belongs to a user
 	belongs_to :user, :class_name => 'User'
-	has_many :answers, :class_name => 'Answer', inverse_of: :question
+	has_many :answers, :class_name => 'Answer'
 end
 
