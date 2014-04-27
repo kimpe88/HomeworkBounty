@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 						 :controllers  => {
              :registrations => 'users/registrations',
            }
+  resources :questions
   root 'home#index'
   
   # The priority is based upon order of creation: first created -> highest priority.

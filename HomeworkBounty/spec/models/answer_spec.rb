@@ -11,7 +11,7 @@ describe Answer do
 		@question = @user.questions.create!({:title => 'Covariance of two functions', :body => 'Help me! I dont understand the question and how to put it into contex'})
 		
 	end
-	it "shoulb be able to find by user"
+	it "should be able to find by user" do
 			
 	end
 end

@@ -21,6 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
 		begin
 			school = School.find(params[:school])
+			resource.role = 'user' # Override default guest role
 			school.students << resource
 			resource_saved = resource.save
 			yield resource if block_given?
