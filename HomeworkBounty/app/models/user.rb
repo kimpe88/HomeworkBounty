@@ -42,8 +42,8 @@ class User
 
   # Own fields
 	belongs_to :school, :class_name => 'School'
-	has_many :questions, :class_name => 'Question'
-	has_many :answers, :class_name => 'Answer'
+	has_many :questions, :class_name => 'Question', inverse_of: :question_author
+	has_many :answers, :class_name => 'Answer', inverse_of: :answer_author
 
 	def student_email
 		if not self.email =~ /#{school.email_domain}$/i

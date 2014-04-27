@@ -16,7 +16,7 @@ class Question
 	end
 	
 	#Belongs to a user
-	belongs_to :user, :class_name => 'User'
-	has_many :answers, :class_name => 'Answer'
+	belongs_to :question_author, :class_name => 'User', inverse_of: :questions
+	has_many :answers_to_question, :class_name => 'Answer', inverse_of: :question_document
 end
 

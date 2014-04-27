@@ -7,7 +7,7 @@ class Answer
 	validates :body, :presence => true,
 										:allow_blank =>false
 	
-	belongs_to :user, class_name: "User"
-	belongs_to :question, class_name: "Question"
+	belongs_to :answer_author, class_name: "User", inverse_of: :answers
+	belongs_to :question_document, class_name: "Question", inverse_of: :answers_to_question
 end
 
