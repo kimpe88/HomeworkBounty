@@ -22,5 +22,4 @@ describe QuestionsController do
 		it "should not allow guests to create questions" do
 			pending	
 		end
-	end
 end
