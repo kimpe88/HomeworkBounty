@@ -17,7 +17,7 @@ class Question
 	
 	#Belongs to a user
 	belongs_to :author, :class_name => 'User'
-	has_many :answers, :class_name => 'Answer', inverse_of: :question_document
+	embeds_many :answers, :class_name => 'Answer'
 	def to_s
 		"Question title #{title}, body #{body}"
 	end
