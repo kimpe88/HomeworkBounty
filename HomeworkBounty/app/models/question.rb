@@ -6,9 +6,9 @@ class Question
   field :title, type: String
 	field :body, type: String
 	field :url, type: String
-	validates :title, :body, :url, :presence => true,
+	validates :title, :body, :presence => true,
 										:allow_blank =>false
-	before_validation :create_url
+	#before_validation :create_url
 	
 	#Automake the title into a nice looking url
 	def create_url
@@ -16,7 +16,10 @@ class Question
 	end
 	
 	#Belongs to a user
-	belongs_to :author, :class_name => 'User', inverse_of: :questions
+	belongs_to :author, :class_name => 'User'
 	has_many :answers, :class_name => 'Answer', inverse_of: :question_document
+	def to_s
+		"Question title #{title}, body #{body}"
+	end
 end
 

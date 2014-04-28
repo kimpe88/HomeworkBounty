@@ -46,7 +46,7 @@ class User
 
   # Own fields
 	belongs_to :school, :class_name => 'School'
-	has_many :questions, :class_name => 'Question', inverse_of: :question_author
+	has_many :questions, :class_name => 'Question'
 	has_many :answers, :class_name => 'Answer', inverse_of: :answer_author
 
 

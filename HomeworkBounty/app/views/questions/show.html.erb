@@ -1,4 +1,12 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @question.title %></h1>
+<div class="body">
+	<p><%= @question.body %></p>
+</div>
 
-<%= link_to 'Edit', edit_question_path(@question) %> |
+<% if can? :update, @question %>
+	<%= link_to 'Edit', edit_question_path(@question) %> |
+<% end %>
+<% if can? :destroy, @question %>
+	<%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
 <%= link_to 'Back', questions_path %>

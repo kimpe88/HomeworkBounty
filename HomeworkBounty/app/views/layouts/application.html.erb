@@ -18,8 +18,9 @@
 				
 		</div>
 	</div>
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
+	<%- flash.each do |k, v| %>
+    <div id="<%= k %>"><%= v %></div>
+	<% end %> 
 	<%= yield %>
 </body>
 </html>
