@@ -1,22 +1,14 @@
 require 'spec_helper'
 
 describe User do
-	before :each do
-		@country = Country.create!({:name => 'sweden'})
-		@school_args = {:name => 'kth', :website => 'kth.se', :email_domain => '@kth.se'}
-		@school = School.create!(@school_args)
-		@user_args = {:username => 'test_user', :email => 'test@kth.se', :password => 'password'}
-		@school.students.create!(@user_args)
-		@user = @school.students[0]
-	end
 	it "should be searchable by username" do
-		User.find('test_user').should be_eql(@user)
+		User.find(@user.username).should be_eql(@user)
 	end
 	it "should encrypt password" do
 		@user.encrypted_password.should_not be_eql('password')
 	end
 	it "should have a school" do
-		User.find('test_user').school.name.should be_eql(@school_args[:name])
+		User.find(@user.username).school.name.should be_eql(@school.name)
 	end
 	it "should not approve non school email" do
 		expect { @school.students.create!({:username => 'test_user2', :email => 'test@gmail.se', :password => 'password'}) }.to raise_error

@@ -17,3 +17,5 @@
 
 # Ignore spring
 /spring
+
+*.swp

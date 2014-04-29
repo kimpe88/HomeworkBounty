@@ -20,6 +20,12 @@ require 'spec_helper'
 
 describe QuestionsController do
 		it "should not allow guests to create questions" do
-			pending	
+			pending
+		end
+		it "should not allow users to edit others questions" do
+			pending
+		end
+		it "should not allow regular users to delete own questions" do
+			pending
 		end
 end

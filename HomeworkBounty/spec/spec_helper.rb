@@ -53,4 +53,12 @@ RSpec.configure do |config|
     DatabaseCleaner[:mongoid].clean
   end
 	config.include Capybara::DSL
+	config.before :each do
+		@country = Country.create!(:name => 'South Korea')
+		@school = @country.schools.create!({:name => 'KTH', :website => "kth.se", :email_domain => 'kth.se'})
+		@user_args = {:username => 'auto_user', :password => 'password123', :email => 'test@kth.se', :role => 'user'}
+		@user = @school.students.create!(@user_args)
+		@user.confirm!
+	end
 end
+

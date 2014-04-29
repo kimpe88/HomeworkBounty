@@ -2,10 +2,6 @@ require 'spec_helper'
 
 describe Answer do
   before :each do
-		@school_args = {:name => 'kth', :website => 'kth.se', :email_domain => '@kth.se'}
-		@school = School.create!(@school_args)
-		@user_args = {:username => 'test_user1', :email => 'test@kth.se', :password => 'password'}
-		@user = @school.students.create!(@user_args)
 		@user_args2 = {:username => 'test_user2', :email => 'test2@kth.se', :password => 'password2'}
 		@user2 = @school.students.create!(@user_args2)
 		@question = @user.questions.create!({:title => 'Covariance of two functions', :body => 'Help me! I dont understand the question and how to put it into contex'})
@@ -22,7 +18,7 @@ describe Answer do
 			@tmp_answers1 = @tmp_answers[0]
 			@tmp_answers2 = @tmp_answers[1]
 			@tmp_answers1.author = @user.username
-			@tmp_answers2.author = @user2.username			
+			@tmp_answers2.author = @user2.username
 	end
 	it "should be able to find all different questions and their answer/answers" do
 			@question.answers.length == 2

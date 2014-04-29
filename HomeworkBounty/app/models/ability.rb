@@ -37,15 +37,21 @@ class Ability
 		user ||= User.new # Guest user
 		if user.role?(:admin)
 			can :manage, :all
-		elsif user.role?(:moderator)
+		elsif user.role?(:user) or user.role?(:moderator)
 			can :read, :all
 			can :create, Question
-			can :update, :all
-		elsif user.role?(:user)
-			can :read, :all	
-			can :create, Question
-			can :update, Question do |question|
-				question.try(:author) == user 
+			can :create, Answer
+			if user.role?(:moderator)
+				can :manage, Question
+				can :manage, Answer
+			else
+				can :update, Question do |question|
+					question.try(:author) == user
+				end
+
+				can :update, Answer do |answer|
+					answer.try(:author) == user.username
+				end
 			end
 		else
 			can :read, :all
