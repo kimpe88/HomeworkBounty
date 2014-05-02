@@ -46,11 +46,11 @@ class Ability
 				can :manage, Answer
 			else
 				can :update, Question do |question|
-					question.try(:author) == user
+					question.try(:author_to_question) == user
 				end
 
 				can :update, Answer do |answer|
-					answer.try(:author) == user.username
+					answer.try(:author_to_answer) == user
 				end
 			end
 		else

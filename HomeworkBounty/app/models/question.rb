@@ -16,8 +16,9 @@ class Question
 	end
 	
 	#Belongs to a user
-	belongs_to :author, :class_name => 'User'
-	embeds_many :answers, :class_name => 'Answer'
+	belongs_to :author_to_question, :class_name => 'User', :inverse_of => 'questions_made'
+	has_many :answers, :class_name => 'Answer', :inverse_of => 'question'
+	
 	def to_s
 		"Question title #{title}, body #{body}"
 	end

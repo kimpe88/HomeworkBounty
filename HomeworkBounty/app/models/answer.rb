@@ -4,10 +4,10 @@ class Answer
   include Mongoid::Document
 	include Mongoid::Timestamps
   field :body, type: String
-	field :author, type: String
-	validates :body,:author, :presence => true,
+	validates :body, :presence => true,
 										:allow_blank =>false
 	
-	embedded_in :question, :class_name => 'Question'
+	belongs_to :question, :class_name => 'Question', :inverse_of => 'answers'
+	belongs_to :author_to_answer, :class_name => 'User', :inverse_of => 'answers_made'
 end
 

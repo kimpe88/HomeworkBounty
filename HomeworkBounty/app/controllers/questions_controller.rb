@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
 		author = User.find(current_user.username)
-		@question = author.questions.new(question_params)
+		@question = author.questions_made.new(question_params)
     respond_to do |format|
       if @question.save
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
