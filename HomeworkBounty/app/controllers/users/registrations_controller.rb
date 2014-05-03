@@ -7,8 +7,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 		Country.all.each do |country|
 			@countries << country.name
 		end
-		@schools = [] 
-		School.all.each do |school| 	
+		@schools = []
+		School.all.each do |school|
 			@schools << school.name
 		end
 	end

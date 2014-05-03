@@ -3,9 +3,14 @@ Rails.application.routes.draw do
 						 :controllers  => {
              :registrations => 'users/registrations',
            }
-  resources :questions
+
+	resources :questions, :answers
+	# Only manage index, show by restful controllers
+	# Other user actions are handles by devise
+	resources :users, :only => [:index, :show]
   root 'home#index'
-  
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
