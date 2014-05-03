@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe Question do
-  before :each do
-		@question = @user.questions_made.create!({:title => 'Covariance of two functions', :body => 'Help me! I dont understand the question and how to put it into contex'})
-		
-	end
 	it "should be searchable by title" do
 		Question.find_by(:title => @question.title)
 	end
