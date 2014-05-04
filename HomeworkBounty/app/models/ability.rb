@@ -41,6 +41,9 @@ class Ability
 			can :read, :all
 			can :create, Question
 			can :create, Answer
+			can :update, User do |u|
+				u == user
+			end
 			if user.role?(:moderator)
 				can :manage, Question
 				can :manage, Answer

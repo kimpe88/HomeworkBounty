@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 	resources :questions, :answers
 	# Only manage index, show by restful controllers
 	# Other user actions are handles by devise
-	resources :users, :only => [:index, :show]
+	resources :users, :only => [:show]
   root 'home#index'
 
 
