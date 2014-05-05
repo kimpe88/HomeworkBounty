@@ -1,0 +1,446 @@
+@charset 'UTF-8';
+
+@font-face{font-family:'FontAwesome';src:url('../font/fontawesome-webfont.eot?v=4.0.1');src:url('../font/fontawesome-webfont.eot?#iefix&v=4.0.1') format('embedded-opentype'),url('../font/fontawesome-webfont.woff?v=4.0.1') format('woff'),url('../font/fontawesome-webfont.ttf?v=4.0.1') format('truetype'),url('../font/fontawesome-webfont.svg?v=4.0.1#fontawesomeregular') format('svg');font-weight:normal;font-style:normal}
+
+/* Basic */
+
+	*
+	{
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+	html
+	{
+		background: #f7f7f7 url(<%= asset_path 'bg.jpg' %>);
+		height: 100%;
+	}
+
+	body
+	{
+		font-family: 'Open Sans', sans-serif;
+		font-size: 12pt;
+		color: #696969;
+		font-weight: 300;
+		background: url(<%= asset_path 'bgshadow.png' %>) top left no-repeat;
+		background-size: 100% 100%;
+	}
+	
+	a
+	{
+		color: #0090c5;
+		text-decoration: underline;
+	}
+	
+		a:hover
+		{
+			text-decoration: none;
+		}
+	
+	h1, h2, h3, h4, h5, h6
+	{
+		color: #444;
+		font-weight: 800;
+	}
+	
+	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a
+	{
+		color: inherit;
+		text-decoration: none;
+		outline: 0;
+	}
+
+	strong
+	{
+	}
+
+	form
+	{
+	}
+	
+		form input,
+		form select,
+		form textarea
+		{
+			-webkit-appearance: none;
+		}
+			
+	br.clear
+	{
+		clear: both;
+	}
+	
+	p, ul, ol, dl, table
+	{
+		margin-bottom: 2em;
+	}
+	
+	section,
+	article
+	{
+		margin-bottom: 5em;
+	}
+	
+	section > :last-child,
+	article > :last-child
+	{
+		margin-bottom: 0;
+	}
+
+	section:last-child,
+	article:last-child
+	{
+		margin-bottom: 0;
+	}
+
+	.image
+	{
+		display: inline-block;
+		outline: 0;
+	}
+	
+		.image img
+		{
+			display: block;
+			width: 100%;
+			border-radius: 8px;
+		}
+
+	.image-full
+	{
+		display: block;
+		width: 100%;
+		margin: 0 0 2.5em 0;
+	}
+	
+	.image-left
+	{
+		float: left;
+		margin: 0 2em 2em 0;
+	}
+	
+	.image-centered
+	{
+		display: block;
+		margin: 0 0 2.5em 0;
+	}
+
+		.image-centered img
+		{
+			margin: 0 auto;
+			width: auto;
+		}
+
+	.button
+	{
+		position: relative;
+		display: inline-block;
+		background: #444444;
+		color: #fff;
+		text-decoration: none;
+		border-radius: 6px;
+		font-weight: 800;
+		outline: 0;
+		-moz-transition: background-color .25s ease-in-out;
+		-webkit-transition: background-color .25s ease-in-out;
+		-o-transition: background-color .25s ease-in-out;
+		-ms-transition: background-color .25s ease-in-out;
+		transition: background-color .25s ease-in-out;
+	}
+	
+		.button:hover
+		{
+			background: #797979;
+		}
+	
+		.button:active
+		{
+			background: #797979;
+		}
+	
+		.button.fa
+		{
+		}
+		
+			.button.fa:before
+			{
+				position: relative;
+			}
+	
+		.button.alt
+		{
+			background: #f1f1f1;
+			color: #444;
+		}
+
+			.button.alt:hover
+			{
+				background: #e8e8e8;
+			}
+
+			.button.alt:active
+			{
+				background: #e4e4e4;
+			}
+
+	ul.style1
+	{
+	}
+	
+	ul.style2
+	{
+	}
+	
+		ul.style2 li
+		{
+		}
+			
+	ol.style1
+	{
+	}
+
+	.byline
+	{
+		display: block;
+	}
+
+	header
+	{
+		margin: 0 0 2em 0;
+	}
+	
+		header h2, header h3
+		{
+			margin: 0 0 0.25em 0;
+		}
+		
+		header .byline
+		{
+			margin: 0;
+		}
+
+	footer
+	{
+		margin: 2.5em 0 0 0;
+	}
+	
+	.box
+	{
+		background: #fff;
+		border-radius: 6px;
+		box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.015);
+		box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
+	}
+
+/* Widgets */
+
+	.widget-links
+	{
+	}
+
+	.widget-thumbnails
+	{
+	}
+
+		.widget-thumbnails .grid
+		{
+			margin-bottom: 2.5em;
+		}
+
+	.widget-contact
+	{
+	}
+	
+		.widget-contact ul
+		{
+			overflow: hidden;
+			position: relative;
+			left: -4px;
+			top: 4px;
+			margin-bottom: 1.5em;
+		}
+		
+			.widget-contact ul li
+			{
+				display: inline-block;
+				margin-right: 0.25em;
+			}
+
+				.widget-contact ul li a
+				{
+					display: inline-block;
+					width: 2.5em;
+					height: 2.5em;
+					text-align: center;
+					line-height: 2.5em;
+					border-radius: 0.35em;
+					outline: 0;
+					opacity: 0.75;
+					-moz-transition: background-color .25s ease-in-out;
+					-webkit-transition: background-color .25s ease-in-out;
+					-o-transition: background-color .25s ease-in-out;
+					-ms-transition: background-color .25s ease-in-out;
+					transition: background-color .25s ease-in-out;
+					background: #555;
+				}
+				
+					.widget-contact ul li a:before
+					{
+						color: #f3f3f3;
+						font-size: 1.75em;
+						line-height: 1.5em;
+					}
+
+					.widget-contact ul li a:hover
+					{
+						background: #333;
+					}
+				
+/* Wrappers */
+
+	#header-wrapper
+	{
+	}
+	
+	#banner-wrapper
+	{
+	}
+	
+	#main-wrapper
+	{
+		background: #fff;
+		box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
+	}
+	
+	#footer-wrapper
+	{
+	}
+	 
+/* Header */
+
+	#header
+	{
+		position: relative;
+	}
+	 
+/* Logo */
+
+	#logo
+	{
+		overflow: hidden;
+	}
+
+		#logo h1
+		{
+			color: #444444;
+			border-radius: 6px;
+			font-family: 'Oleo Script', serif;
+			font-weight: 400;
+		}
+		
+		#logo span
+		{
+			font-weight: 800;
+		}
+
+	 
+/* Footer */
+
+	#footer
+	{
+	}
+	
+		#footer a
+		{
+			color: inherit;
+		}
+	
+	#copyright
+	{
+		color: #aaa;
+	}
+	
+		#copyright a
+		{
+			color: inherit;
+		}
+		
+		/* Forms */
+
+		form
+		{
+		}
+		
+			form .actions
+			{
+				padding-top: 0;
+			}
+		
+			form label
+			{
+				display: block;
+			}
+		
+			form input.text,
+			form select,
+			form textarea
+			{
+				-webkit-appearance: none;
+				display: block;
+				background: #f3f4f5;
+				border: solid 1px #d2d7dc;
+				border-radius: 0.35em;
+				width: 100%;
+				padding: 0.85em;
+				-moz-transition: background-color 0.25s ease-in-out;
+				-webkit-transition: background-color 0.25s ease-in-out;
+				-o-transition: background-color 0.25s ease-in-out;
+				-ms-transition: background-color 0.25s ease-in-out;
+				transition: background-color 0.25s ease-in-out;
+			}
+
+				form input.text:focus,
+				form select:focus,
+				form textarea:focus
+				{
+					background: #fff;
+				}
+				
+				form textarea
+				{
+					min-height: 7em;
+				}
+
+				form .formerize-placeholder
+				{
+					color: #555 !important;
+				}
+
+				form ::-webkit-input-placeholder
+				{
+					color: #555 !important;
+				}
+
+				form :-moz-placeholder
+				{
+					color: #555 !important;
+				}
+
+				form ::-moz-placeholder
+				{
+					color: #555 !important;
+				}
+
+				form :-ms-input-placeholder
+				{
+					color: #555 !important;
+				}
+
+				form ::-moz-focus-inner
+				{
+					border: 0;
+				}
+			
