@@ -1,5 +1,7 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
+	before_filter :authenticate_user!, :except => [:index, :show]
+	load_and_authorize_resource param_method: :answer_params
 
   # GET /answers
   # GET /answers.json
@@ -51,7 +53,7 @@ class AnswersController < ApplicationController
   # PATCH/PUT /answers/1.json
   def update
     respond_to do |format|
-      if @answer.update(answer_params)
+      if @answer.update(:body => answer_params[:body])
         format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
         format.json { render :show, status: :ok, location: @answer }
       else
