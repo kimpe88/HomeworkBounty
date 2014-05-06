@@ -1,3 +1,23 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user_question_answer{
+	width:100%;
+	height:auto;
+	margin:auto;
+	padding:20px 40px;
+}
+.user_question_answer_element{
+	width:50%;
+	height:auto;
+	float:left;
+}
+.user_info{
+	width:100%;
+	height:auto;
+	padding:20px 40px;
+}
+.user_info p{
+	margin:0;
+}
