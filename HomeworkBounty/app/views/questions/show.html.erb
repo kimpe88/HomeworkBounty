@@ -10,16 +10,26 @@
 			<div class="answer" >
 				<%= answer.body %><br />
 				<% if can? :update, answer %>
-					<%= link_to 'Edit', edit_answer_path(answer)%> 
+					<%= link_to 'Edit', edit_answer_path(answer)%>
 				<% end %>
 			</div>
 		<% end %>
 </div>
 
+<div class="answer_form_container" id="answer_form_container">
+	<%= form_tag("/answers", method: "post") do %>
+		<%= label(:answer, :body, "Answer") %>
+		<%= text_area(:answer, :body) %>
+		<%= hidden_field(:answer, :question,:value => @question._id) %>
+		<%= submit_tag("Post answer") %>
+	<% end %>
+</div>
+
 <% if can? :update, @question %>
 	<%= link_to 'Edit', edit_question_path(@question) %> |
 <% end %>
-<%= link_to 'Answer', new_answer_path(question: @question.slug) %> |
+<%= link_to 'Answer question', '#', :id => "answer_btn" %>
+
 <% if can? :destroy, @question %>
 	<%= link_to 'Destroy', @question, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
