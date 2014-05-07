@@ -1,9 +1,46 @@
-<h1>Listing questions</h1>
-<ul class="question_list">
-	<% @questions.each do |question| %>
-		<li><%= link_to question.title, question %></li>
-	<% end %>
-</ul>
-<br>
+<div class="newest_questions">
+	<h3>Latest questions</h3>
 
-<%= link_to 'New Question', new_question_path %>
+		<table class="box shadow_effect">
+			<% @questions.limit(10).each do |question| %>
+				<tr class="<%= cycle('odd', 'even') -%>">
+					<td>
+						<%= link_to question.title, question %>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+		<div class="button_tmp blue">
+			<%= link_to 'New Question', new_question_path %>
+		</div>
+</div>
+<div class="newest_questions semi_questions">
+	<h3>Popular questions</h3>
+	<div >
+		<table class="box shadow_effect">
+			<% @questions.limit(5).each do |question| %>
+				<tr class="<%= cycle('odd', 'even') -%>">
+					<td>
+						<%= link_to question.title, question %>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
+<div class="newest_questions semi_questions">
+	<h3>Popular tags</h3>
+	<div >
+		<table class="box shadow_effect">
+			<% @questions.limit(5).each do |question| %>
+				<tr class="<%= cycle('odd', 'even') -%>">
+					<td>
+						<%= link_to question.title, question %>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
+
+
