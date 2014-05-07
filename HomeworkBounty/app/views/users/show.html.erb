@@ -1,11 +1,22 @@
 <p id="notice"><%= notice %></p>
 <div class="user_info">
-	<p>Username: <%= @user.username %></p>
-	<p>Country: <%= @user.school.country.name %></p>
-	<p>School: <%= @user.school.name %></p>
-	<% if can? :update, @user %>
-		<p><%= link_to 'Edit', edit_user_registration_path %></p>
-	<% end %>
+	<div class="profile_picture">
+	</div>
+	<div class="user_bio">
+		<h5>User bio</h5>
+		<p>Username: <%= @user.username %></p>
+		<p>Country: <%= @user.school.country.name %></p>
+		<p>School: <%= @user.school.name %></p>
+		<% if can? :update, @user %>
+			<p><%= link_to 'Edit', edit_user_registration_path %></p>
+		<% end %>
+	</div>
+	<div class="user_stats">
+		<h5>User stats</h5>
+		<p>Rating: 97 %</p>
+		<p>Asked: 4</p>
+		<p>Answered: 12</p>
+	</div>
 </div>
 
 
