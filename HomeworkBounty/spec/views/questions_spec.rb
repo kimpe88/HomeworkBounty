@@ -5,7 +5,7 @@ describe Question do
 		@question = @user.questions_made.create!({:title => 'My question', :body => 'Do you know?'})
 	end
 	it "should be able to view questions" do
-		page.should have_content('Listing questions')
+		page.should have_content('Latest question')
 	end
 
 	it "should not be able to post without logging in" do
