@@ -1,19 +1,40 @@
-<div class="question">
-	<h1><%= @question.title %></h1>
-	<div class="body">
-		<p><%= @question.body %></p>
-	</div>
-</div>
+<div class="newest_questions">
+	<h3>
+		<%= @question.title %>
+	</h3>
 
-<div class="answers">
-		<% @question.answers.each do |answer| %>
-			<div class="answer" >
-				<%= answer.body %><br />
-				<% if can? :update, answer %>
-					<%= link_to 'Edit', edit_answer_path(answer)%>
-				<% end %>
-			</div>
-		<% end %>
+	<div class="box shadow_effect">
+		<div class="row odd">
+			<div class="posted_by">
+				<% author = @question.author_to_question %>
+				<%= author.username %><br />
+				Answers: <%= author.answers_made.size %>
+		</div>
+		<div class="body">
+			<%= @question.body %><br/>
+			<% if can? :update, @question %>
+				<%= link_to 'Edit', edit_question_path(@question) %> 
+			<% end %>
+		</div>
+	</div>
+
+	<% @question.answers.each do |answer| %>
+		<div class="row <%= cycle('even', 'odd') %>" >
+			<div class="posted_by">
+				<% author = answer.author_to_answer %>
+				<%= author.username %> <br />
+				Answers: <%= author.answers_made.size %>
+		</div>
+		<div class="body">
+			<%= answer.body %><br />
+			<% if can? :update, answer %>
+				<%= link_to 'Edit', edit_answer_path(answer) %>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+
+	</div>
 </div>
 
 <div class="answer_form_container" id="answer_form_container">
@@ -25,12 +46,9 @@
 	<% end %>
 </div>
 
-<% if can? :update, @question %>
-	<%= link_to 'Edit', edit_question_path(@question) %> |
-<% end %>
-<%= link_to 'Answer question', '#', :id => "answer_btn" %>
+<%= link_to 'Answer question', '#', :id => "answer_btn", :class => 'btn btn-default', :role => 'button' %>
 
 <% if can? :destroy, @question %>
 	<%= link_to 'Destroy', @question, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
-<%= link_to 'Back', questions_path %>
+<%= link_to 'Back', questions_path, :class => 'btn btn-default', :role => 'button' %>
