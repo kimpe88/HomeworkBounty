@@ -1,8 +1,8 @@
 class QuestionsController < ApplicationController
-	
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 	before_filter :authenticate_user!, :except => [:index, :show]
 	load_and_authorize_resource param_method: :question_params
+	include QuestionsHelper
 
 
   # GET /questions
@@ -64,9 +64,6 @@ class QuestionsController < ApplicationController
       format.json { head :no_content }
     end
   end
-	
-	
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

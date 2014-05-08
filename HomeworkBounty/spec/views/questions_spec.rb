@@ -34,6 +34,7 @@ describe Question do
 
 	it "should not be able to edit other user's posts" do
 		new_question = Question.create!({:title => 'hello', :body => 'see this'})
+		@user2.questions_made << new_question
 		visit '/questions/' + new_question[:id]
 		click_link 'Sign in'
 		fill_in 'user_username', :with => @user_args[:username]

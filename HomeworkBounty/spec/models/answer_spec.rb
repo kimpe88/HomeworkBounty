@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe Answer do
   before :each do
-		@user_args2 = {:username => 'test_user2', :email => 'test2@kth.se', :password => 'password2'}
-		@user2 = @school.students.create!(@user_args2)
 		@question1 = @user.questions_made.create!({:title => 'Goat simalutor?', :body => 'Help me'})
 		@user.answers_made.create!({:body => 'The first reponse',:question => @question._id})
 		@user2.answers_made.create!({:body => 'The second reponse',:question => @question._id})

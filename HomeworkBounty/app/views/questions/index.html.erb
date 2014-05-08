@@ -16,10 +16,10 @@
 	<h3>Popular questions</h3>
 	<div >
 		<table class="box shadow_effect">
-			<%= get_popular_questions.each do |k,v| %>
+			<% get_popular_questions.each do |question| %>
 				<tr class="<%= cycle('odd', 'even') -%>">
 					<td>
-						<%= link_to k.title, k %>
+						<%= link_to question.title, question %>
 					</td>
 				</tr>
 			<% end %>

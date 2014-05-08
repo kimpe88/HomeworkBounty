@@ -58,6 +58,8 @@ RSpec.configure do |config|
 		@school = @country.schools.create!({:name => 'KTH', :website => "kth.se", :email_domain => 'kth.se'})
 		@user_args = {:username => 'auto_user', :password => 'password123', :email => 'test@kth.se', :role => 'user'}
 		@user = @school.students.create!(@user_args)
+		@user2_args ={:username => 'auto_user2', :password => 'password123', :email => 'test2@kth.se', :role => 'user'}
+		@user2 = @school.students.create!(@user2_args)
 		@category = Category.create!({:name => 'Computer science'})
 		@tag = Tag.create!({:name => 'Ruby'})
 		@tag1 = Tag.create!({:name => 'Rails'})
