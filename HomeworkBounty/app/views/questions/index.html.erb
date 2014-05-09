@@ -5,17 +5,11 @@
 		<% @questions.limit(10).each do |question| %>
 			<div class="answer_element_wrapper <%= cycle('even', 'odd') %>" >
 				<% author = question.author_to_question %>
-				<div class="posted_by">
-					<div class="user_image"></div>
-					<p><%= link_to author.username, user_path(author.username) %></p>
-					<p>Questions: <%= author.questions_made.size %></p>
-				</div>
-				
-				
-				<div class="answer_body">
+				<div class="question_body">
 					<p class="question_title"><%= link_to question.title, question %></p>	
+					<p><%= link_to author.username, user_path(author.username), :class => "user_name"  %></p>
 					<% if can? :update, question %>
-						<%= link_to 'Edit', edit_question_path(question) %>
+						<p><%= link_to 'Edit', edit_question_path(question) %></p>
 					<% end %>
 				</div>
 			</div>
@@ -29,17 +23,11 @@
 		<% get_popular_questions.each do |question| %>
 			<div class="answer_element_wrapper <%= cycle('even', 'odd') %>" >
 				<% author = question.author_to_question %>
-				<div class="posted_by">
-					<div class="user_image"></div>
-					<p><%= link_to author.username, user_path(author.username) %></p>
-					<p>Questions: <%= author.questions_made.size %></p>
-				</div>
-				
-				
-				<div class="answer_body">
+				<div class="question_body">
 					<p class="question_title"><%= link_to question.title, question %></p>	
+					<p><%= link_to author.username, user_path(author.username), :class => "user_name"%></p>
 					<% if can? :update, question %>
-						<%= link_to 'Edit', edit_question_path(question) %>
+						<p class="edit"><%= link_to 'Edit', edit_question_path(question) %></p>
 					<% end %>
 				</div>
 			</div>

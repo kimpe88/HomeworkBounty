@@ -20,24 +20,35 @@
 </div>
 
 
-<div class="user_question_answer" >
-	<div  class="user_question_answer_element">
+<div class="user_question_answer">
+	<div class="newest_questions space_right">
 		<h3>Questions</h3>
-		<ul class="user_questions">
+		<div class="box shadow_effect">
 			<% @user.questions_made.limit(10).each do |question| %>
-				<li> <%= link_to question.title, question_path(question)  %> </li>
+				<div class="answer_element_wrapper <%= cycle('even', 'odd') %>" >
+					<div class="question_body">
+						<p class="question_title"><%= link_to question.title, question %></p>	
+						<p class="user_name">Created at: <%= question.created_at %></p>
+					</div>
+				</div>
 			<% end %>
-		</ul>
+		</div>
 	</div>
-
-	<div class="user_question_answer_element">
+	
+	<div class="newest_questions">
 		<h3>Answers</h3>
-		<ul class="user_answers">
+		<div class="box shadow_effect">
 			<% @user.answers_made.limit(10).each do |answer| %>
-				<li> <%= link_to answer.question.title, question_path(answer.question)  %> </li>
+				<div class="answer_element_wrapper <%= cycle('even', 'odd') %>" >
+					<div class="question_body">
+						<p class="question_title"><%= link_to answer.question.title, answer %></p>	
+						<p class="user_name">Created at: <%= answer.created_at %></p>
+					</div>
+				</div>
 			<% end %>
-		</ul>
+		</div>
 	</div>
 </div>
+
 
 
