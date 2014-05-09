@@ -17,12 +17,19 @@ div#answer_form_container
 	.newest_questions a{
 		text-decoration:none;
 	}
+	.newest_questions a:visited{
+		color:#0090C5;
+	}
+	.newest_questions a:hover{
+		background-color:transparent;
+	}
 
 	.newest_questions .box{
 		width:100%;
 		height:auto;
 		background:#FFF;
 		margin:40px auto;
+		padding:0px;
 	}
 
 	.newest_questions table{
@@ -65,8 +72,83 @@ div#answer_form_container
 	}
 
 .semi_questions{
-	width:40%;
+	width:45%;
 	height:auto;
 	margin-bottom:10px;
 	float:right;
 }
+
+.answer_header_wrapper{
+	width:100%;
+}
+
+	.answer_header_wrapper:after{
+		content:'';
+			display:block;
+			clear: both;
+	}
+
+.answer_header{
+	margin:0px;
+	width:50%;
+	float:left;
+	overflow: hidden;
+}
+	.answer_header h3{
+		margin:0px;
+	}
+.answer_buttons{
+	width:auto;
+	float:right;
+	margin-left:30px;
+}
+
+.answer_element_wrapper{
+	width:100%;
+	height:auto;
+	overflow: hidden;
+}
+.posted_by{
+	float:left;
+	width:20%;
+	height:100%;
+	padding:5px;
+	text-align:center;
+	overflow: hidden;
+}
+
+	.posted_by p{
+		width:110px;
+		padding-left:5px;
+		font-size:10px;
+		margin:0;
+		text-align:left;	
+	}
+
+	
+	.posted_by .user_image{
+		-moz-border-radius:10px;
+		border-radius:10px;
+		height:80px;
+		width:70px;
+		background:url(<%= asset_path 'default_avatar_thumb.png' %>) top left no-repeat;
+	}
+.answer_body{
+	width:80%;
+	height:auto;
+	float:left;
+	padding:10px;
+}
+
+#answer_form_container{
+	postition:relative;
+	width:100%;
+	height:auto;
+}
+
+.question_title{
+	font-size:16px;
+}
+
+	
+

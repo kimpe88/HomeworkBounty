@@ -1,54 +1,47 @@
 <div class="newest_questions">
-	<h3>
-		<%= @question.title %>
-	</h3>
+	<div class="answer_header_wrapper">
+		<div class="answer_header">
+			<h3>
+				<%= @question.title %>
+			</h3>
+		</div>
+		<div class="answer_buttons">
+			<%= link_to 'Answer question', '#', :id => "answer_btn", :class => 'btn btn-default', :role => 'button' %>
+			<% if can? :destroy, @question %>
+				<%= link_to 'Destroy', @question, method: :delete, data: { confirm: 'Are you sure?' } %>
+			<% end %>
+			<%= link_to 'Back', questions_path, :class => 'btn btn-default', :role => 'button' %>
+		</div>
+	</div>
+	
 
 	<div class="box shadow_effect">
-		<div class="row odd">
-			<div class="posted_by">
-				<% author = @question.author_to_question %>
-				<%= author.username %><br />
-				Answers: <%= author.answers_made.size %>
-		</div>
-		<div class="body">
-			<%= @question.body %><br/>
-			<% if can? :update, @question %>
-				<%= link_to 'Edit', edit_question_path(@question) %>
-			<% end %>
-		</div>
-	</div>
-
-	<% @question.answers.each do |answer| %>
-		<div class="row <%= cycle('even', 'odd') %>" >
-			<div class="posted_by">
+		<% @question.answers.each do |answer| %>
+			<div class="answer_element_wrapper <%= cycle('even', 'odd') %>" >
 				<% author = answer.author_to_answer %>
-				<%= author.username %> <br />
-				Answers: <%= author.answers_made.size %>
-		</div>
-		<div class="body">
-			<%= answer.body %><br />
-			<% if can? :update, answer %>
-				<%= link_to 'Edit', edit_answer_path(answer) %>
-			<% end %>
-		</div>
-	</div>
-<% end %>
-
+				<div class="posted_by">
+					<div class="user_image"></div>
+					<p><%= link_to author.username, user_path(author.username) %></p>
+					<p>Answers: <%= author.answers_made.size %></p>
+				</div>
+				
+				
+				<div class="answer_body">
+					<p><%= answer.body %></p>	
+					<% if can? :update, answer %>
+						<%= link_to 'Edit', edit_answer_path(answer) %>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
 	</div>
 </div>
 
-<div class="answer_form_container" id="answer_form_container">
+<div id="answer_form_container">
 	<%= form_tag("/answers", method: "post") do %>
-		<%= label(:answer, :body, "Answer") %>
+		<%= label(:answer, :body, "New answer") %>
 		<%= text_area(:answer, :body) %>
 		<%= hidden_field(:answer, :question,:value => @question._id) %>
 		<%= submit_tag("Post answer") %>
 	<% end %>
 </div>
-
-<%= link_to 'Answer question', '#', :id => "answer_btn", :class => 'btn btn-default', :role => 'button' %>
-
-<% if can? :destroy, @question %>
-	<%= link_to 'Destroy', @question, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-<%= link_to 'Back', questions_path, :class => 'btn btn-default', :role => 'button' %>
