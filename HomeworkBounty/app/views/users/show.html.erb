@@ -6,16 +6,16 @@
 		<h5>User bio</h5>
 		<p>Username: <%= @user.username %></p>
 		<p>Country: <%= @user.school.country.name %></p>
-		<p>School: <%= @user.school.name %></p>
+		<p>School: <%= link_to @user.school.name, "http://" + @user.school.website, :target => '_blank' %></p>
 		<% if can? :update, @user %>
 			<p><%= link_to 'Edit', edit_user_registration_path %></p>
 		<% end %>
 	</div>
 	<div class="user_stats">
 		<h5>User stats</h5>
-		<p>Rating: 97 %</p>
-		<p>Asked: 4</p>
-		<p>Answered: 12</p>
+		<p>Rating: 100 %</p>
+		<p>Asked: <%= @user.questions_made.count %></p>
+		<p>Answered: <%= @user.answers_made.count %></p>
 	</div>
 </div>
 
@@ -27,21 +27,21 @@
 			<% @user.questions_made.limit(10).each do |question| %>
 				<div class="answer_element_wrapper <%= cycle('even', 'odd') %>" >
 					<div class="question_body">
-						<p class="question_title"><%= link_to question.title, question %></p>	
+						<p class="question_title"><%= link_to question.title, question %></p>
 						<p class="user_name">Created at: <%= question.created_at %></p>
 					</div>
 				</div>
 			<% end %>
 		</div>
 	</div>
-	
+
 	<div class="newest_questions">
 		<h3>Answers</h3>
 		<div class="box shadow_effect">
 			<% @user.answers_made.limit(10).each do |answer| %>
 				<div class="answer_element_wrapper <%= cycle('even', 'odd') %>" >
 					<div class="question_body">
-						<p class="question_title"><%= link_to answer.question.title, answer %></p>	
+						<p class="question_title"><%= link_to answer.question.title, answer %></p>
 						<p class="user_name">Created at: <%= answer.created_at %></p>
 					</div>
 				</div>

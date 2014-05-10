@@ -2,7 +2,6 @@ require 'spec_helper'
 describe Question do
 	before :each do
 		visit '/questions'
-		@question = @user.questions_made.create!({:title => 'My question', :body => 'Do you know?'})
 	end
 	it "should be able to view questions" do
 		page.should have_content('Latest question')
