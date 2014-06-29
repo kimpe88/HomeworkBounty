@@ -1,14 +1,27 @@
 Rails.application.routes.draw do
+
   devise_for :users,
 						 :controllers  => {
              :registrations => 'users/registrations',
            }
-
-	resources :questions, :answers
+					 
+	#Route for questions
+	resources :questions do
+		collection do
+			get 'tags/:tag_list', as: :tags,to: :tags
+		end
+		collection do
+			post 'search(/:category(/:tag_list))', as: :search,to: :search
+		end
+	end
+					 
+	resources :replies
+	resources :answers
 	# Only manage index, show by restful controllers
 	# Other user actions are handles by devise
 	resources :users, :only => [:show]
   root 'home#index'
+	
 
 
   # The priority is based upon order of creation: first created -> highest priority.

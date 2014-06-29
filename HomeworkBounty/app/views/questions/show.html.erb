@@ -45,6 +45,7 @@
 
 				<div class="answer_body">
 					<p><%= answer.body %></p>
+					<%= link_to 'reply', reply_answer_path(answer), :class => 'reply_btn', :value => answer._id %>
 					<% if can? :update, answer %>
 						<%= link_to 'Edit', edit_answer_path(answer) %>
 					<% end %>
@@ -59,6 +60,13 @@
 		<%= label(:answer, :body, "New answer") %>
 		<%= text_area(:answer, :body) %>
 		<%= hidden_field(:answer, :question,:value => @question._id) %>
+		<%= submit_tag("Post answer", :class => 'btn btn-default') %>
+	<% end %>
+</div>
+<div id="answer_reply_form_container">
+	<%= form_tag("/answers/reply", method: "post") do %>
+		<%= label(:answer, :body, "New reply") %>
+		<%= text_area(:answer, :body) %>
 		<%= submit_tag("Post answer", :class => 'btn btn-default') %>
 	<% end %>
 </div>

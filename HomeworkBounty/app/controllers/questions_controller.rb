@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-	before_filter :authenticate_user!, :except => [:index, :show]
-	load_and_authorize_resource param_method: :question_params
+	before_filter :authenticate_user!, :except => [:tags, :index, :show]
+	load_and_authorize_resource param_method: :question_params, :except => [:tags,:search]
 	include QuestionsHelper
 
 
@@ -64,7 +64,26 @@ class QuestionsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+	
+	#Display /questions/tags
+	def tags
+		@question = Question.with_all_taglist(params[:tag_list])
+	end
+	
+	#Display search on questions/search/
+	def search
+		if ( !params[:category]['question_category'].blank? &&  !params[:taglist].blank?)
+			@tmp_question = Category.find(params[:category]['question_category']).questions_under_category
+			@question =  @tmp_question.with_all_taglist(params[:taglist])
+		elsif (!params[:taglist].blank?)
+			@question =  Question.with_all_taglist(params[:taglist])
+		elsif (!params[:category]['question_category'].blank?)
+			@question = Category.find(params[:category]['question_category']).questions_under_category
+		else	
+			@question = Question.all
+		end
+	end
+	
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
@@ -73,6 +92,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-			params[:question].permit(:title, :body)
+			params[:question].permit(:title, :body, :taglist, :question_category_id)
     end
 end

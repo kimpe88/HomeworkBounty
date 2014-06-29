@@ -14,8 +14,12 @@
   <div class="actions">
 		<%= f.label :title %>
 		<%= f.text_field :title %> <br />
-		<%= f.label :body %> <br />
+		<%= f.label :body %>
 		<%= f.text_area :body %> <br />
+		<%= f.label :pick_category %>
+		<%= f.collection_select :question_category_id, Category.all, :id, :name,prompt: true	 %>
+		<%= f.label :add_tags %>
+		<%= f.text_field :taglist %>
 		<%= f.submit :class => 'btn btn-default' %>
   </div>
 <% end %>

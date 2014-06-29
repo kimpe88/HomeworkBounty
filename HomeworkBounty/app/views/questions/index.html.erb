@@ -1,6 +1,15 @@
 <div class="newest_questions">
+	<div class="search">
+		<h3>Search questions</h3>
+		<%= form_tag(search_questions_path(), method: "post") do %>
+			<%= label_tag(:category, "Select category") %>
+			<%= collection_select(:category, :question_category, Category.all, :id, :name, {include_blank: 'All categories'}) %>
+			<%= label_tag(:taglist, "Tags") %>
+			<%= text_field_tag(:taglist) %>
+			<%= submit_tag("Search") %>
+		<% end %>
+	</div>
 	<h3>Latest questions</h3>
-
 	<div class="box shadow_effect">
 		<% get_latest_questions.each do |question| %>
 			<div class="answer_element_wrapper <%= cycle('even', 'odd') %>" >
@@ -8,6 +17,11 @@
 				<div class="question_body">
 					<p class="question_title"><%= link_to question.title, question %></p>	
 					<p><%= link_to author.username, user_path(author.username), :class => "user_name"  %></p>
+					<p class="tag_list">
+						<% question.taglist.each do |tag| %>
+							<%= link_to tag,tags_questions_path(tag) %>
+						<% end %>
+					</p>
 					<% if can? :update, question %>
 						<p><%= link_to 'Edit', edit_question_path(question) %></p>
 					<% end %>

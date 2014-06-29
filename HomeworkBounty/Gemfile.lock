@@ -102,6 +102,8 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.3)
     minitest (5.3.2)
+    mongoid-tags-arent-hard (1.1.5)
+      mongoid (>= 3.0.0)
     mongoid_slug (3.2.1)
       mongoid (> 3.0)
       stringex (~> 2.0)
@@ -219,6 +221,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks (~> 2.0.2)
   mongoid (~> 4.0.0.beta1)!
+  mongoid-tags-arent-hard
   mongoid_slug (~> 3.2.1)
   rails (= 4.1.0)
   rspec-rails (~> 2.14.2)
