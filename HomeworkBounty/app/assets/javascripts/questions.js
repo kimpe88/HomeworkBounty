@@ -12,7 +12,7 @@ $(function () {
         var href = $(this).attr('value');
         $("#answer_reply_form_container").show();
 				$(this).hide();
-				$("#answer_reply_form_container form").attr('action','answers/' +href + '/reply');
+				$("#answer_reply_form_container form").attr('action','/answers/' + href + '/replies');
         return false;
     });
 });

@@ -45,12 +45,32 @@
 
 				<div class="answer_body">
 					<p><%= answer.body %></p>
-					<%= link_to 'reply', reply_answer_path(answer), :class => 'reply_btn', :value => answer._id %>
+					<% if (answer.replies.length == 0) && (author.username != current_user.username)%>
+							<%= link_to 'reply', answer_replies_path(answer), :class => 'reply_btn', :value => answer._id %>
+						<% end %>
 					<% if can? :update, answer %>
 						<%= link_to 'Edit', edit_answer_path(answer) %>
 					<% end %>
 				</div>
 			</div>
+			<% answer.replies.each do |reply| %>
+				<div class="reply_element_wrapper <%= cycle('even', 'odd') %>" >
+					<% author = reply.author %>
+					<div class="posted_by">
+						<div class="user_image"></div>
+						<p><%= link_to author, user_path(author) %></p>
+					</div>
+					<div class="answer_body">
+						<p><%= reply.body %></p>
+						<% if (((reply.count == answer.replies.length) || (answer.replies.length == 0)) && (author != current_user.username))%>
+							<%= link_to 'reply', answer_replies_path(answer), :class => 'reply_btn', :value => answer._id %>
+						<% end %>
+						<% if can? :update, reply %>
+							<%= link_to 'Edit', edit_answer_reply_path(answer,reply) %>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
 		<% end %>
 	</div>
 </div>
@@ -65,8 +85,8 @@
 </div>
 <div id="answer_reply_form_container">
 	<%= form_tag("/answers/reply", method: "post") do %>
-		<%= label(:answer, :body, "New reply") %>
-		<%= text_area(:answer, :body) %>
-		<%= submit_tag("Post answer", :class => 'btn btn-default') %>
+		<%= label(:reply, :body, "New reply") %>
+		<%= text_area(:reply, :body) %>
+		<%= submit_tag("Post reply", :class => 'btn btn-default') %>
 	<% end %>
 </div>

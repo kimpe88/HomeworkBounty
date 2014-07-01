@@ -15,8 +15,10 @@ Rails.application.routes.draw do
 		end
 	end
 					 
-	resources :replies
-	resources :answers
+	
+	resources :answers do
+		resources :replies
+	end
 	# Only manage index, show by restful controllers
 	# Other user actions are handles by devise
 	resources :users, :only => [:show]

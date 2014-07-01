@@ -24,11 +24,14 @@ class RepliesController < ApplicationController
   # POST /replies
   # POST /replies.json
   def create
-    @reply = Reply.new(reply_params)
-
+		answer = Answer.find(params[:answer_id])
+    @reply = answer.replies.new(reply_params)
+		@reply.author = current_user.username
+		@reply.count = answer.replies.length
+		
     respond_to do |format|
       if @reply.save
-        format.html { redirect_to @reply, notice: 'Reply was successfully created.' }
+        format.html { redirect_to question_path(answer.question), notice: 'Reply was successfully created.' }
         format.json { render :show, status: :created, location: @reply }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class RepliesController < ApplicationController
   def update
     respond_to do |format|
       if @reply.update(reply_params)
-        format.html { redirect_to @reply, notice: 'Reply was successfully updated.' }
+        format.html { redirect_to question_path(@answer.question), notice: 'Reply was successfully updated.' }
         format.json { render :show, status: :ok, location: @reply }
       else
         format.html { render :edit }
@@ -64,7 +67,8 @@ class RepliesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reply
-      @reply = Reply.find(params[:id])
+			@answer = Answer.find(params[:answer_id])
+      @reply = @answer.replies.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

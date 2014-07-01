@@ -72,32 +72,6 @@ class AnswersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-	#answer/answer_id/reply
-	def reply
-		@new_answer = Answer.new(answer_params[:body])
-		@answer.reply <<  @new_answer
-		@new_answer.parent_question << @answer
-		begin
-			user = current_user
-			question = Question.find(answer_params[ :question ])
-			user.answers_made << @answer
-			puts question
-			puts @answer
-			respond_to do |format|
-				if question.save and user.save
-					format.html { redirect_to question_path(question), notice: 'Answer was successfully created.' }
-					format.json { render :show, status: :created, location: @answer }
-				else
-					format.html { render :new }
-					format.json { render json: @answer.errors, status: :unprocessable_entity }
-				end
-			end
-			rescue Mongoid::Errors::DocumentNotFound => e
-				flash[ :error ] = "Invalid question"
-				redirect_to questions_path
-		end
-	end
 	
   private
     # Use callbacks to share common setup or constraints between actions.

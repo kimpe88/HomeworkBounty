@@ -18,7 +18,7 @@ describe Answer do
 			@tmp_answers2.author_to_answer = @user2.username
 	end
 	it "should be able to find all different questions and their answer/answers" do
-			@question.answers.length.should eql(2)
+			@question.answers.length.should eql(3)
 			@question1.answers.length.should eql(1)
 	end
 	it "should not allow empty fields" do

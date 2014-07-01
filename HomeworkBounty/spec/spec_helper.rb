@@ -67,6 +67,7 @@ RSpec.configure do |config|
 		@tag1 = Tag.create!({:name => 'Rails'})
 		@tag2 = Tag.create!({:name => 'JQuery'})
 		@question = @user.questions_made.create!({:title => 'Räven raskar över isen',:body => 'Men han är lika glad för det', :question_category => @category._id,:tags => [@tag,@tag2]})
+		@answer = Answer.create!({:body => "test answer", :author_to_answer => @user, :question => @question})
 	end
 end
 

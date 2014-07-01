@@ -41,12 +41,14 @@ class Ability
 			can :read, :all
 			can :create, Question
 			can :create, Answer
+			can :create, Reply
 			can :update, User do |u|
 				u == user
 			end
 			if user.role?(:moderator)
 				can :manage, Question
 				can :manage, Answer
+				can :manage, Reply
 			else
 				can :update, Question do |question|
 					question.try(:author_to_question) == user
@@ -54,6 +56,10 @@ class Ability
 
 				can :update, Answer do |answer|
 					answer.try(:author_to_answer) == user
+				end
+				
+				can :update, Reply do |reply|
+					reply.try(:author) == user.username
 				end
 			end
 		else
