@@ -4,7 +4,7 @@ class RepliesController < ApplicationController
   # GET /replies
   # GET /replies.json
   def index
-    @replies = Reply.all
+		@answer = Answer.find(params[:answer_id])
   end
 
   # GET /replies/1
@@ -59,7 +59,7 @@ class RepliesController < ApplicationController
   def destroy
     @reply.destroy
     respond_to do |format|
-      format.html { redirect_to replies_url }
+      format.html { redirect_to question_path(@answer.question) }
       format.json { head :no_content }
     end
   end

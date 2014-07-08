@@ -13,4 +13,23 @@ module QuestionsHelper
 			tags[category.name] = category.tags_under_category.pluck(:name)
 		end
 	end
+	def can_reply_answer?(answer)
+			if(current_user.nil?)
+				return false
+			elsif(answer.replies.length == 0) && (answer.author_to_answer.username != current_user.username)		
+				return true
+			else
+				return false
+			end
+	end
+	def can_reply?(answer,reply)
+			if(current_user.nil?)
+				return false
+			elsif (reply.count == answer.replies.length) && (reply.author != current_user.username)
+				return true
+			else
+				return false
+			end
+	end
+
 end

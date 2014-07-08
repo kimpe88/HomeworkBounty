@@ -9,12 +9,14 @@
 
   <tbody>
     <% @answers.each do |answer| %>
-      <tr>
-        <td><%= link_to 'Show', answer %></td>
-        <td><%= link_to 'Edit', edit_answer_path(answer) %></td>
-        <td><%= link_to 'Destroy', answer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+			<% if (!current_user.nil?) && (answer.author_to_answer.username == current_user.username)%>
+				<tr>
+					<td><%= link_to 'Show', answer %></td>
+					<td><%= link_to 'Edit', edit_answer_path(answer) %></td>
+					<td><%= link_to 'Destroy', answer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				</tr>
+			<% end %>
+		<% end %>
   </tbody>
 </table>
 

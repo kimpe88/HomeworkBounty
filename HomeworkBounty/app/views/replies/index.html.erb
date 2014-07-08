@@ -10,18 +10,20 @@
   </thead>
 
   <tbody>
-    <% @replies.each do |reply| %>
-      <tr>
-        <td><%= reply.body %></td>
-        <td><%= reply.count %></td>
-        <td><%= link_to 'Show', reply %></td>
-        <td><%= link_to 'Edit', edit_reply_path(reply) %></td>
-        <td><%= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% @answer.replies.each do |reply| %>
+      <% if (!current_user.nil?) && (reply.author == current_user.username)%>
+				<tr>
+					<td><%= reply.body %></td>
+					<td><%= reply.count %></td>
+					<td><%= link_to 'Show', answer_reply_path(@answer,reply)  %></td>
+					<td><%= link_to 'Edit', edit_answer_reply_path(@answer,reply) %></td>
+					<td><%= link_to 'Destroy', answer_reply_path(@answer,reply), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				</tr>
+			<% end %>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Reply', new_reply_path %>
+<%= link_to 'New Reply', new_answer_reply_path(@answer) %>

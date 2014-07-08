@@ -32,8 +32,6 @@ class AnswersController < ApplicationController
 			question = Question.find(answer_params[ :question ])
 			question.answers << @answer
 			user.answers_made << @answer
-			puts question
-			puts @answer
 			respond_to do |format|
 				if question.save and user.save
 					format.html { redirect_to question_path(question), notice: 'Answer was successfully created.' }

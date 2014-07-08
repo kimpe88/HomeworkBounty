@@ -2,33 +2,33 @@ require "spec_helper"
 
 describe RepliesController do
   describe "routing" do
-
+		
     it "routes to #index" do
-      get("/replies").should route_to("replies#index")
-    end
+      get("/answers/#{@answer._id}/replies").should route_to("replies#index", :answer_id => @answer._id.to_s)
+		end
 
     it "routes to #new" do
-      get("/replies/new").should route_to("replies#new")
+      get("/answers/#{@answer._id}/replies/new").should route_to("replies#new", :answer_id => @answer._id.to_s)
     end
 
     it "routes to #show" do
-      get("/replies/1").should route_to("replies#show", :id => "1")
+      get("/answers/#{@answer._id}/replies/#{@reply._id}").should route_to("replies#show", :answer_id => @answer._id.to_s, :id => @reply._id.to_s)
     end
 
     it "routes to #edit" do
-      get("/replies/1/edit").should route_to("replies#edit", :id => "1")
+      get("/answers/#{@answer._id}/replies/#{@reply._id}/edit").should route_to("replies#edit", :answer_id => @answer._id.to_s, :id => @reply._id.to_s)
     end
 
     it "routes to #create" do
-      post("/replies").should route_to("replies#create")
+      post("/answers/#{@answer._id}/replies").should route_to("replies#create", :answer_id => @answer._id.to_s)
     end
 
     it "routes to #update" do
-      put("/replies/1").should route_to("replies#update", :id => "1")
+      put("/answers/#{@answer._id}/replies/#{@reply._id}").should route_to("replies#update", :answer_id => @answer._id.to_s, :id => @reply._id.to_s)
     end
 
     it "routes to #destroy" do
-      delete("/replies/1").should route_to("replies#destroy", :id => "1")
+      delete("/answers/#{@answer._id}/replies/#{@reply._id}").should route_to("replies#destroy", :answer_id => @answer._id.to_s, :id => @reply._id.to_s)
     end
 
   end
