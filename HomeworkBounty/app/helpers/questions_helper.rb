@@ -40,4 +40,15 @@ module QuestionsHelper
 			"hide"
 		end
 	end
+	def can_answer?(question)
+		if(current_user == question.author_to_question)	
+			return false
+		end
+		question.answers.each do |answer|
+			if(answer.author_to_answer == current_user)
+				return false
+			end
+		end	
+		return true
+	end
 end

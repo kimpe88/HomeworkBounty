@@ -6,7 +6,9 @@
 			</h3>
 		</div>
 		<div class="answer_buttons">
-			<%= link_to 'Answer question', '#', :id => "answer_btn", :class => 'btn btn-default', :role => 'button' %>
+			<% if can_answer?(@question) %>
+				<%= link_to 'Answer question', '#', :id => "answer_btn", :class => 'btn btn-default', :role => 'button' %>
+			<% end %>	
 			<% if can? :destroy, @question %>
 				<%= link_to 'Destroy', @question, method: :delete, data: { confirm: 'Are you sure?' } %>
 			<% end %>
@@ -72,7 +74,7 @@
 							<%= link_to 'Reply', answer_replies_path(answer), :class => 'reply_btn btn btn-default', :value => answer._id %>
 						<% end %>
 						<% if can? :update, reply %>
-							<%= link_to 'Edit', edit_answer_reply_path(answer,reply), :class => 'edit_button btn btn-default' %>
+							<%= link_to 'Edit', edit_answer_reply_path(answer,reply), :class => 'edit_button 	btn btn-default' %>
 						<% end %>
 					</div>
 				</div>
