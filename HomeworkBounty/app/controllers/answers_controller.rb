@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
-  before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :set_answer, only: [:show, :edit, :update, :destroy,:accept_answer,:un_accept_answer]
 	before_filter :authenticate_user!, :except => [:index, :show]
-	load_and_authorize_resource param_method: :answer_params
+	load_and_authorize_resource param_method: :answer_params, :except => [:accept_answer,:un_accept_answer]
 
   # GET /answers
   # GET /answers.json
@@ -70,6 +70,34 @@ class AnswersController < ApplicationController
       format.json { head :no_content }
     end
   end
+	
+	def accept_answer
+		respond_to do |format|
+			if(current_user == @answer.question.author_to_question)
+				@answer.update(:accepted => true)
+				@answer.question.update(:answered => true)
+				format.html { redirect_to question_path(@answer.question), notice: 'Answer was succesfully accepted.' }
+				format.json { render :show, status: :updated, location: @answer }
+			else
+				format.html { redirect_to question_path(@answer.question), notice: 'You can not accept a answer to a question too which you are not the author ' }
+				format.json { render :show, status: :update, location: @answer }
+			end
+		end
+	end
+	
+	def un_accept_answer
+		respond_to do |format|
+			if(current_user == @answer.question.author_to_question)
+				@answer.update(:accepted => false)
+				@answer.question.update(:answered => false)
+				format.html { redirect_to question_path(@answer.question), notice: 'Answer was succesfully un accepted.' }
+				format.json { render :show, status: :updated, location: @answer }
+			else
+				format.html { redirect_to question_path(@answer.question), notice: 'You can not un accept a answer to a question too which you are not the author ' }
+				format.json { render :show, status: :update, location: @answer }
+			end
+		end
+	end
 	
   private
     # Use callbacks to share common setup or constraints between actions.

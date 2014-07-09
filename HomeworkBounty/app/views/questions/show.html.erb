@@ -46,10 +46,16 @@
 				<div class="answer_body">
 					<p><%= answer.body %></p>
 					<% if can_reply_answer?(answer)%>
-							<%= link_to 'reply', answer_replies_path(answer), :class => 'reply_btn', :value => answer._id %>
+							<%= link_to 'reply', answer_replies_path(answer), :class => 'reply_btn btn btn-default', :value => answer._id %>
 					<% end %>
 					<% if can? :update, answer %>
-						<%= link_to 'Edit', edit_answer_path(answer) %>
+						<%= link_to 'Edit', edit_answer_path(answer),:class => 'edit_button btn btn-default' %>
+					<% end %>
+					<% can_accept_answer = can_accept(@question,answer) %>
+					<% if can_accept_answer == "accept"%>
+							<%= link_to 'Accept', accept_answer_path(answer), :class => 'accept_btn btn btn-default' %>
+					<% elsif can_accept_answer == "unaccept" %>
+						<%= link_to 'Un accept', un_accept_answer_path(answer), :class => 'accept_btn btn btn-default' %>	
 					<% end %>
 				</div>
 			</div>
@@ -63,10 +69,10 @@
 					<div class="reply_body">
 						<p><%= reply.body %></p>
 						<% if can_reply?(answer,reply)%>
-							<%= link_to 'Reply', answer_replies_path(answer), :class => 'reply_btn', :value => answer._id %>
+							<%= link_to 'Reply', answer_replies_path(answer), :class => 'reply_btn btn btn-default', :value => answer._id %>
 						<% end %>
 						<% if can? :update, reply %>
-							<%= link_to 'Edit', edit_answer_reply_path(answer,reply) %>
+							<%= link_to 'Edit', edit_answer_reply_path(answer,reply), :class => 'edit_button btn btn-default' %>
 						<% end %>
 					</div>
 				</div>

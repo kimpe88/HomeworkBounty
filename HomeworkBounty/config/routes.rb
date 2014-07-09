@@ -18,6 +18,12 @@ Rails.application.routes.draw do
 	
 	resources :answers do
 		resources :replies
+		member do
+			get 'accept', as: :accept, to: :accept_answer
+		end
+		member do
+			get 'un_accept', as: :un_accept, to: :un_accept_answer
+		end
 	end
 	# Only manage index, show by restful controllers
 	# Other user actions are handles by devise

@@ -31,5 +31,13 @@ module QuestionsHelper
 				return false
 			end
 	end
-
+	def can_accept(question,answer)
+		if(current_user == question.author_to_question) && (answer.accepted?)
+			return "unaccept"
+		elsif(current_user == question.author_to_question) && (!answer.accepted?) && (!question.answered?)
+			return "accept"
+		else
+			"hide"
+		end
+	end
 end

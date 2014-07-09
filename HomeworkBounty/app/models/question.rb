@@ -8,6 +8,7 @@ class Question
   field :title, type: String
 	field :body, type: String
 	field :url, type: String
+	field :answered, type: Boolean, default:->{false}
 	validates :title, :body, :presence => true,
 										:allow_blank =>false
 	#validates_uniqueness_of :title
